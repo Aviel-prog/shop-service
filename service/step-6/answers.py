@@ -1,0 +1,4 @@
+# 1. class when the thing itself has methods, rich state, or a longer lifecycle beyond just one loop or one with block
+# 2. In Service v2, async with for the rates client should go around each request (or per operation that needs a rate)—not around the whole app or shared across unrelated concurrent requests/event loops.
+# 3. Even though both a regular exception like ZeroDivisionError and task cancellation, unwind the async with block, they behave differently in asyncio—which is why tests check both separately.
+# 4. Whenever an async resource or stream has .aclose(), treat cleanup like any other await step: deterministic, explicit, and inside async with (__aexit__ / finally) or an async generator's finally—never left to __del__ or garbage collection.
